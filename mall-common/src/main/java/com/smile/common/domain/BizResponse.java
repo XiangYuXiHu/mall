@@ -1,5 +1,7 @@
 package com.smile.common.domain;
 
+import com.smile.common.enums.BizEnum;
+import com.smile.common.exception.BizException;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -34,7 +36,7 @@ public class BizResponse<T> {
         this.data = data;
     }
 
-    public BizResponse(Integer code, String messag) {
+    public BizResponse(Integer code, String message) {
         this.code = code;
         this.message = message;
     }
@@ -48,6 +50,14 @@ public class BizResponse<T> {
      */
     public static <T> BizResponse<T> success(T data) {
         return new BizResponse<>(SUCCESS.getCode(), SUCCESS.getMessage(), data);
+    }
+
+    /**
+     * @param e
+     * @return
+     */
+    public static BizResponse failure(BizException e) {
+        return new BizResponse(e.getCode(), e.getMessage(), null);
     }
 
     /**
@@ -70,6 +80,7 @@ public class BizResponse<T> {
     public static <T> BizResponse<T> failure(T data) {
         return new BizResponse<>(FAILURE.getCode(), FAILURE.getMessage(), data);
     }
+
 
     /**
      * 失败
