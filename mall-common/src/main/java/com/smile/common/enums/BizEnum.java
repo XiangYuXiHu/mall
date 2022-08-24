@@ -10,9 +10,13 @@ import lombok.Getter;
  */
 @Getter
 public enum BizEnum {
-    SUCCESS(1000, "操作成功"),
-    FAILURE(1024, "操作失败"),
-    REGISTRY_ALREADY(1001, "用户名已注册");
+    SUCCESS(10000, "操作成功"),
+    FAILURE(10024, "操作失败"),
+    REGISTRY_ALREADY(10001, "用户名已注册"),
+    PASSWORD_ERROR(10002, "密码不正确"),
+    ACCOUNT_FREEZE(10003, "账号已被冻结"),
+    TOKEN_EXPIRED(10004, "token已过期");
+
     private Integer code;
     private String message;
 

@@ -27,6 +27,10 @@ public class BizException extends RuntimeException {
         this.message = bizEnum.getMessage();
     }
 
+    public BizException(String message) {
+        super(message);
+    }
+
     @Override
     public String toString() {
         return "BizException{" +

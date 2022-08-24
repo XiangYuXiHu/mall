@@ -18,7 +18,7 @@ import javax.validation.constraints.NotEmpty;
  */
 @Getter
 @Setter
-public class UmsUserParam {
+public class UmsUserRegisterRequest {
 
     @NotEmpty
     @ApiModelProperty(value = "用户名", required = true)

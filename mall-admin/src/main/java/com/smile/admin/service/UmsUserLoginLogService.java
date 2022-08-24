@@ -13,4 +13,10 @@ import com.smile.dao.entity.UmsUserLoginLog;
  */
 public interface UmsUserLoginLogService extends IService<UmsUserLoginLog> {
 
+    /**
+     * 添加登陆记录
+     *
+     * @param username
+     */
+    void recordLoginLog(String username);
 }

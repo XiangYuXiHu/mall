@@ -3,16 +3,21 @@ package com.smile.admin.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.smile.admin.bo.MyUserDetails;
-import com.smile.admin.dto.UmsUserParam;
+import com.smile.admin.dto.UmsUserRegisterRequest;
 import com.smile.admin.service.UmsResourceService;
+import com.smile.admin.service.UmsUserLoginLogService;
 import com.smile.admin.service.UmsUserService;
 import com.smile.common.enums.BizEnum;
 import com.smile.common.exception.BizException;
 import com.smile.dao.entity.UmsResource;
 import com.smile.dao.entity.UmsUser;
 import com.smile.dao.mapper.UmsUserMapper;
+import com.smile.security.util.JwtTokenUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,6 +25,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+
+import static com.smile.common.enums.BizEnum.ACCOUNT_FREEZE;
+import static com.smile.common.enums.BizEnum.PASSWORD_ERROR;
 
 /**
  * <p>
@@ -29,6 +37,7 @@ import java.util.List;
  * @author smile
  * @since 2022-07-10
  */
+@Slf4j
 @Service("umsUserService")
 public class UmsUserServiceImpl extends ServiceImpl<UmsUserMapper, UmsUser> implements UmsUserService {
 
@@ -37,6 +46,12 @@ public class UmsUserServiceImpl extends ServiceImpl<UmsUserMapper, UmsUser> impl
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+
+    @Autowired
+    private UmsUserLoginLogService umsUserLoginLogService;
 
 
     @Override
@@ -48,12 +63,12 @@ public class UmsUserServiceImpl extends ServiceImpl<UmsUserMapper, UmsUser> impl
     }
 
     @Override
-    public void register(UmsUserParam umsUserParam) {
+    public void register(UmsUserRegisterRequest umsUserRegisterRequest) {
         UmsUser umsUser = new UmsUser();
-        BeanUtils.copyProperties(umsUserParam, umsUser);
+        BeanUtils.copyProperties(umsUserRegisterRequest, umsUser);
         umsUser.setCreateTime(new Date());
         umsUser.setStatus(Boolean.TRUE);
-        UmsUser user = getUmsUserByUsername(umsUserParam.getUsername());
+        UmsUser user = getUmsUserByUsername(umsUserRegisterRequest.getUsername());
         if (null != user) {
             throw new BizException(BizEnum.REGISTRY_ALREADY);
         }
@@ -71,4 +86,28 @@ public class UmsUserServiceImpl extends ServiceImpl<UmsUserMapper, UmsUser> impl
         }
         throw new UsernameNotFoundException("用户名或密码错误");
     }
+
+    @Override
+    public String login(String username, String password) {
+        UserDetails userDetails = loadUserByUsername(username);
+        if (!passwordEncoder.matches(password, userDetails.getPassword())) {
+            throw new BizException(PASSWORD_ERROR);
+        }
+        if (!userDetails.isEnabled()) {
+            throw new BizException(ACCOUNT_FREEZE);
+        }
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+        String token = jwtTokenUtil.generateToken(userDetails);
+
+        umsUserLoginLogService.recordLoginLog(username);
+        return token;
+    }
+
+    @Override
+    public String refreshToken(String token) {
+        return jwtTokenUtil.refreshHeadToken(token);
+    }
+
+
 }

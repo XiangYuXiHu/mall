@@ -22,9 +22,9 @@ public class UmsUserLoginLog implements Serializable {
     private Long id;
 
     /**
-     * 用户主键
+     * 用户名
      */
-    private Long userId;
+    private String userName;
 
     /**
      * 登录ip地址
@@ -50,12 +50,12 @@ public class UmsUserLoginLog implements Serializable {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getIp() {
@@ -86,10 +86,10 @@ public class UmsUserLoginLog implements Serializable {
     public String toString() {
         return "UmsUserLoginLog{" +
                 "id=" + id +
-                ", userId=" + userId +
-                ", ip=" + ip +
-                ", userAgent=" + userAgent +
+                ", userName='" + userName + '\'' +
+                ", ip='" + ip + '\'' +
+                ", userAgent='" + userAgent + '\'' +
                 ", createTime=" + createTime +
-                "}";
+                '}';
     }
 }
