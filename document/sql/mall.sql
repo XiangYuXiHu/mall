@@ -12,8 +12,8 @@ CREATE TABLE `cms_help` (
 ) ENGINE=InnoDB COMMENT='帮助表';
 
 
-DROP TABLE IF EXISTS `ums_user`;
-CREATE TABLE `ums_user` (
+DROP TABLE IF EXISTS `sys_user`;
+CREATE TABLE `sys_user` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `username` varchar(64) NOT NULL COMMENT '用户名',
   `password` varchar(64) NOT NULL COMMENT '密码',
@@ -29,18 +29,18 @@ CREATE TABLE `ums_user` (
 ) ENGINE=InnoDB COMMENT='后台用户表';
 
 
-DROP TABLE IF EXISTS `ums_user_login_log`;
-CREATE TABLE `ums_user_login_log` (
+DROP TABLE IF EXISTS `sys_user_login_log`;
+CREATE TABLE `sys_user_login_log` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) NOT NULL COMMENT '用户主键',
+  `user_name` varchar(64) NOT NULL COMMENT '用户名称',
   `ip` varchar(64) DEFAULT NULL  COMMENT '登录ip地址',
   `user_agent` varchar(128) DEFAULT NULL COMMENT '浏览器类型',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB COMMENT='后台用户登录日志表';
 
-DROP TABLE IF EXISTS `ums_role`;
-CREATE TABLE `ums_role` (
+DROP TABLE IF EXISTS `sys_role`;
+CREATE TABLE `sys_role` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `role_name` varchar(32) NOT NULL DEFAULT '' COMMENT '角色名称',
   `status` int(1) DEFAULT '1' COMMENT '启用状态：0->禁用；1->启用',
@@ -93,8 +93,8 @@ INSERT INTO `ums_permission` VALUES ('17', '6', '删除品牌', 'pms:brand:delet
 INSERT INTO `ums_permission` VALUES ('18', '0', '首页', null, null, '0', null, '1', '0','2018-09-29 16:15:14','2018-09-29 16:15:14');
 
 
-DROP TABLE IF EXISTS `ums_user_role_relation`;
-CREATE TABLE `ums_user_role_relation` (
+DROP TABLE IF EXISTS `sys_user_role`;
+CREATE TABLE `sys_user_role` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) NOT NULL COMMENT '用户主键',
   `role_id` bigint(20) NOT NULL COMMENT '角色主键',
@@ -205,8 +205,8 @@ CREATE TABLE `ums_user_permission_relation` (
 ) ENGINE=InnoDB COMMENT='后台用户和权限关系表(除角色中定义的权限以外的加减权限)';
 
 
-DROP TABLE IF EXISTS `ums_resource`;
-CREATE TABLE `ums_resource` (
+DROP TABLE IF EXISTS `sys_resource`;
+CREATE TABLE `sys_resource` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) DEFAULT NULL COMMENT '资源名称',
   `url` varchar(200) DEFAULT NULL COMMENT '资源URL',
@@ -217,38 +217,38 @@ CREATE TABLE `ums_resource` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB COMMENT='后台资源表';
 
-INSERT INTO `ums_resource` VALUES ('1', '商品品牌管理', '/brand/**', null, '1', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('2', '商品属性分类管理', '/productAttribute/**', null, '1', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('3',  '商品属性管理', '/productAttribute/**', null, '1', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('4', '商品分类管理', '/productCategory/**', null, '1', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('5',  '商品管理', '/product/**', null, '1', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('6',  '商品库存管理', '/sku/**', null, '1', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('8',  '订单管理', '/order/**', '', '2', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('9',  ' 订单退货申请管理', '/returnApply/**', '', '2', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('10',  '退货原因管理', '/returnReason/**', '', '2', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('11',  '订单设置管理', '/orderSetting/**', '', '2', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('12',  '收货地址管理', '/companyAddress/**', '', '2', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('13',  '优惠券管理', '/coupon/**', '', '3', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('14',  '优惠券领取记录管理', '/couponHistory/**', '', '3', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('15',  '限时购活动管理', '/flash/**', '', '3', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('16', '限时购商品关系管理', '/flashProductRelation/**', '', '3', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('17',  '限时购场次管理', '/flashSession/**', '', '3', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('18',  '首页轮播广告管理', '/home/advertise/**', '', '3', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('19',  '首页品牌管理', '/home/brand/**', '', '3', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('20', '首页新品管理', '/home/newProduct/**', '', '3', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('21',  '首页人气推荐管理', '/home/recommendProduct/**', '', '3', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('22',  '首页专题推荐管理', '/home/recommendSubject/**', '', '3', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('23',  ' 商品优选管理', '/prefrenceArea/**', '', '5', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('24', '商品专题管理', '/subject/**', '', '5', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('25',  '后台用户管理', '/admin/**', '', '4', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('26',  '后台用户角色管理', '/role/**', '', '4', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('27',  '后台菜单管理', '/menu/**', '', '4', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('28',  '后台资源分类管理', '/resourceCategory/**', '', '4', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_resource` VALUES ('29',  '后台资源管理', '/resource/**', '', '4', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('1', '商品品牌管理', '/brand/**', null, '1', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('2', '商品属性分类管理', '/productAttribute/**', null, '1', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('3',  '商品属性管理', '/productAttribute/**', null, '1', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('4', '商品分类管理', '/productCategory/**', null, '1', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('5',  '商品管理', '/product/**', null, '1', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('6',  '商品库存管理', '/sku/**', null, '1', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('8',  '订单管理', '/order/**', '', '2', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('9',  ' 订单退货申请管理', '/returnApply/**', '', '2', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('10',  '退货原因管理', '/returnReason/**', '', '2', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('11',  '订单设置管理', '/orderSetting/**', '', '2', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('12',  '收货地址管理', '/companyAddress/**', '', '2', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('13',  '优惠券管理', '/coupon/**', '', '3', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('14',  '优惠券领取记录管理', '/couponHistory/**', '', '3', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('15',  '限时购活动管理', '/flash/**', '', '3', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('16', '限时购商品关系管理', '/flashProductRelation/**', '', '3', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('17',  '限时购场次管理', '/flashSession/**', '', '3', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('18',  '首页轮播广告管理', '/home/advertise/**', '', '3', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('19',  '首页品牌管理', '/home/brand/**', '', '3', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('20', '首页新品管理', '/home/newProduct/**', '', '3', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('21',  '首页人气推荐管理', '/home/recommendProduct/**', '', '3', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('22',  '首页专题推荐管理', '/home/recommendSubject/**', '', '3', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('23',  ' 商品优选管理', '/prefrenceArea/**', '', '5', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('24', '商品专题管理', '/subject/**', '', '5', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('25',  '后台用户管理', '/admin/**', '', '4', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('26',  '后台用户角色管理', '/role/**', '', '4', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('27',  '后台菜单管理', '/menu/**', '', '4', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('28',  '后台资源分类管理', '/resourceCategory/**', '', '4', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_resource` VALUES ('29',  '后台资源管理', '/resource/**', '', '4', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
 
 
-DROP TABLE IF EXISTS `ums_role_resource_relation`;
-CREATE TABLE `ums_role_resource_relation` (
+DROP TABLE IF EXISTS `sys_role_resource`;
+CREATE TABLE `sys_role_resource` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `role_id` bigint(20) DEFAULT NULL COMMENT '角色ID',
   `resource_id` bigint(20) DEFAULT NULL COMMENT '资源ID',

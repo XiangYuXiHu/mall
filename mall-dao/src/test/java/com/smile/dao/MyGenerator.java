@@ -55,7 +55,8 @@ public class MyGenerator {
 
         // 配置策略
         StrategyConfig strategyConfig = new StrategyConfig();
-        strategyConfig.setInclude("ums_role_resource_relation");  // 要生成的表名
+        strategyConfig.setTablePrefix("sys_");
+        strategyConfig.setInclude("sys_user_login_log");  // 要生成的表名
         strategyConfig.setEntityLombokModel(false);
         strategyConfig.setNaming(NamingStrategy.underline_to_camel);  // 数据库表映射到实体的命名策略，下划线转驼峰命名
         strategyConfig.setColumnNaming(NamingStrategy.underline_to_camel);  // 数据库表字段映射到实体的命名策略，下划线转驼峰命名

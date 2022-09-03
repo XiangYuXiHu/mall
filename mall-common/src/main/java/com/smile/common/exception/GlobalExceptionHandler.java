@@ -1,6 +1,6 @@
 package com.smile.common.exception;
 
-import com.smile.common.domain.BizResponse;
+import com.smile.common.domain.CommonResult;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @date 2022.08.14 23:00
  */
 @ControllerAdvice
+@ResponseBody
 public class GlobalExceptionHandler {
 
     /**
@@ -22,10 +23,9 @@ public class GlobalExceptionHandler {
      * @param e
      * @return
      */
-    @ResponseBody
-    @ExceptionHandler(value = BizException.class)
-    public BizResponse handle(BizException e) {
-        return BizResponse.failure(e);
+    @ExceptionHandler(value = ApiException.class)
+    public CommonResult handle(ApiException e) {
+        return CommonResult.failed(e);
     }
 
 

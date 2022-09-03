@@ -1,7 +1,7 @@
 package com.smile.admin.bo;
 
-import com.smile.dao.entity.UmsResource;
-import com.smile.dao.entity.UmsUser;
+import com.smile.dao.entity.Resource;
+import com.smile.dao.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,31 +21,32 @@ public class MyUserDetails implements UserDetails {
     /**
      * 后台用户
      */
-    private UmsUser umsUser;
+    private User user;
     /**
      * 资源列表
      */
-    private List<UmsResource> resourceList;
+    private List<Resource> resourceList;
 
-    public MyUserDetails(UmsUser umsUser, List<UmsResource> resourceList) {
-        this.umsUser = umsUser;
+    public MyUserDetails(User user, List<Resource> resourceList) {
+        this.user = user;
         this.resourceList = resourceList;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return resourceList.stream().map(resource -> new SimpleGrantedAuthority(resource.getId() + ":" + resource.getName()))
+        return resourceList.stream().map(resource ->
+                new SimpleGrantedAuthority(resource.getId() + ":" + resource.getName()))
                 .collect(Collectors.toList());
     }
 
     @Override
     public String getPassword() {
-        return umsUser.getPassword();
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return umsUser.getUsername();
+        return user.getUsername();
     }
 
     @Override
@@ -65,6 +66,6 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return umsUser.getStatus().equals(1);
+        return user.getStatus().equals(1);
     }
 }
