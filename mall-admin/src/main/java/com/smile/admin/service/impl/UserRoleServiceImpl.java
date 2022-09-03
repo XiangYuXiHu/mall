@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> implements UserRoleService {
 
     @Override
-    public List<UserRole> getRoleIds(Long userId) {
+    public List<UserRole> getUserRoleList(Long userId) {
         QueryWrapper<UserRole> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("user_id", userId);
         return list(queryWrapper);

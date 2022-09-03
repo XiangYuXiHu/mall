@@ -1,12 +1,20 @@
 package com.smile.admin.controller;
 
 
+import com.smile.admin.dto.domain.MenuDto;
+import com.smile.admin.dto.domain.UserDto;
 import com.smile.admin.dto.request.UserLoginRequest;
 import com.smile.admin.dto.request.UserRegisterRequest;
+import com.smile.admin.service.MenuService;
+import com.smile.admin.service.RoleService;
+import com.smile.admin.service.UserRoleService;
 import com.smile.admin.service.UserService;
 import com.smile.common.domain.CommonResult;
 import com.smile.common.exception.ApiException;
 import com.smile.common.exception.Asserts;
+import com.smile.dao.entity.Menu;
+import com.smile.dao.entity.Role;
+import com.smile.dao.entity.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +27,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static com.smile.common.enums.ResultCode.*;
 
@@ -45,6 +55,12 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RoleService roleService;
+
+    @Autowired
+    private MenuService menuService;
 
     /**
      * 用户注册
@@ -103,22 +119,36 @@ public class UserController {
      *
      * @return
      */
-//    @ApiOperation(value = "获取当前登录用户信息")
-//    @GetMapping("info")
-//    public CommonResult getUserInfo(Principal principal) {
-//        if (null == principal) {
-//            return CommonResult.unauthorized(UNAUTHORIZED);
-//        }
-//        String username = principal.getName();
-//        UmsUser user = umsUserService.getUmsUserByUsername(username);
-//        Map<String, String> data = new HashMap<>();
-//        data.put("username", username);
-////        data.put("menus",r)
-//        data.put("icon", user.getIcon());
-//
-//        return null;
-//    }
+    @ApiOperation(value = "获取当前登录用户信息")
+    @GetMapping("info")
+    public CommonResult getUserInfo(Principal principal) {
+        if (null == principal) {
+            Asserts.fail(UNAUTHORIZED);
+        }
+        String username = principal.getName();
+        User user = userService.getUserByUsername(username);
+        Long userId = user.getId();
+        List<MenuDto> menuList = menuService.getMenuByUserId(userId);
+        List<Role> roleList = roleService.getRoleList(userId);
+        List<String> roleNames = roleList.stream().map(Role::getRoleName)
+                .collect(Collectors.toList());
 
+        UserDto userDto = UserDto.builder()
+                .username(user.getUsername())
+                .icon(user.getIcon())
+                .menuDtoList(menuList)
+                .roleNameList(roleNames)
+                .build();
 
+        return CommonResult.success(userDto);
+    }
+
+    //todo
+
+    @ApiOperation(value = "登出功能")
+    @PostMapping(value = "/logout")
+    public CommonResult logout() {
+        return CommonResult.success(null);
+    }
 }
 

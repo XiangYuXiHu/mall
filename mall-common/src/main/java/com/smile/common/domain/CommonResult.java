@@ -76,17 +76,6 @@ public class CommonResult<T> {
     }
 
     /**
-     * 无权限
-     *
-     * @param resultCode
-     * @param <T>
-     * @return
-     */
-    public static <T> CommonResult<T> unauthorized(ResultCode resultCode) {
-        return new CommonResult<T>(resultCode.getCode(), resultCode.getMessage());
-    }
-
-    /**
      * @param e
      * @return
      */

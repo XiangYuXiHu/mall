@@ -37,7 +37,7 @@ public class ResourceServiceImpl extends ServiceImpl<ResourceMapper, Resource> i
 
     @Override
     public List<Resource> getResourceList(Long userId) {
-        List<UserRole> userRoles = userRoleService.getRoleIds(userId);
+        List<UserRole> userRoles = userRoleService.getUserRoleList(userId);
         if (CollectionUtils.isNotEmpty(userRoles)) {
             List<Long> roleIds = userRoles.stream().map(UserRole::getRoleId).collect(Collectors.toList());
             List<RoleResource> roleResources = roleResourceService.getResourceIds(roleIds);

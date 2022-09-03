@@ -104,8 +104,8 @@ CREATE TABLE `sys_user_role` (
 ) ENGINE=InnoDB COMMENT='后台用户和角色关系表';
 
 
-DROP TABLE IF EXISTS `ums_menu`;
-CREATE TABLE `ums_menu` (
+DROP TABLE IF EXISTS `sys_menu`;
+CREATE TABLE `sys_menu` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `parent_id` bigint(20) DEFAULT NULL COMMENT '父级ID',
   `title` varchar(64) DEFAULT NULL COMMENT '菜单名称',
@@ -120,34 +120,34 @@ CREATE TABLE `ums_menu` (
 ) ENGINE=InnoDB COMMENT='后台菜单表';
 
 
-INSERT INTO `ums_menu` VALUES ('1', '0', '商品', '0', '0', 'pms', 'product', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_menu` VALUES ('2', '1', '商品列表', '1', '0', 'product', 'product-list', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_menu` VALUES ('3', '1', '添加商品', '1', '0', 'addProduct', 'product-add', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_menu` VALUES ('4', '1', '商品分类', '1', '0', 'productCate', 'product-cate', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_menu` VALUES ('5', '1', '商品类型', '1', '0', 'productAttr', 'product-attr', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_menu` VALUES ('6', '1', '品牌管理', '1', '0', 'brand', 'product-brand', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_menu` VALUES ('7', '0', '订单', '0', '0', 'oms', 'order', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_menu` VALUES ('8', '7', '订单列表', '1', '0', 'order', 'product-list', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_menu` VALUES ('9', '7', '订单设置', '1', '0', 'orderSetting', 'order-setting', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_menu` VALUES ('10', '7', '退货申请处理', '1', '0', 'returnApply', 'order-return', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_menu` VALUES ('11', '7', '退货原因设置', '1', '0', 'returnReason', 'order-return-reason', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_menu` VALUES ('12', '0', '营销', '0', '0', 'sms', 'sms', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_menu` VALUES ('13', '12', '秒杀活动列表', '1', '0', 'flash', 'sms-flash', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_menu` VALUES ('14', '12', '优惠券列表', '1', '0', 'coupon', 'sms-coupon', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_menu` VALUES ('16', '12', '品牌推荐', '1', '0', 'homeBrand', 'product-brand', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_menu` VALUES ('17', '12', '新品推荐', '1', '0', 'homeNew', 'sms-new', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_menu` VALUES ('18', '12', '人气推荐', '1', '0', 'homeHot', 'sms-hot', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_menu` VALUES ('19', '12', '专题推荐', '1', '0', 'homeSubject', 'sms-subject', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_menu` VALUES ('20', '12', '广告列表', '1', '0', 'homeAdvertise', 'sms-ad', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_menu` VALUES ('21', '0', '权限', '0', '0', 'ums', 'ums', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_menu` VALUES ('22', '21', '用户列表', '1', '0', 'admin', 'ums-admin', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_menu` VALUES ('23', '21', '角色列表', '1', '0', 'role', 'ums-role', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_menu` VALUES ('24', '21', '菜单列表', '1', '0', 'menu', 'ums-menu', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_menu` VALUES ('25', '21', '资源列表', '1', '0', 'resource', 'ums-resource', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_menu` VALUES ('1', '0', '商品', '0', '0', 'pms', 'product', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_menu` VALUES ('2', '1', '商品列表', '1', '0', 'product', 'product-list', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_menu` VALUES ('3', '1', '添加商品', '1', '0', 'addProduct', 'product-add', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_menu` VALUES ('4', '1', '商品分类', '1', '0', 'productCate', 'product-cate', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_menu` VALUES ('5', '1', '商品类型', '1', '0', 'productAttr', 'product-attr', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_menu` VALUES ('6', '1', '品牌管理', '1', '0', 'brand', 'product-brand', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_menu` VALUES ('7', '0', '订单', '0', '0', 'oms', 'order', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_menu` VALUES ('8', '7', '订单列表', '1', '0', 'order', 'product-list', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_menu` VALUES ('9', '7', '订单设置', '1', '0', 'orderSetting', 'order-setting', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_menu` VALUES ('10', '7', '退货申请处理', '1', '0', 'returnApply', 'order-return', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_menu` VALUES ('11', '7', '退货原因设置', '1', '0', 'returnReason', 'order-return-reason', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_menu` VALUES ('12', '0', '营销', '0', '0', 'sms', 'sms', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_menu` VALUES ('13', '12', '秒杀活动列表', '1', '0', 'flash', 'sms-flash', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_menu` VALUES ('14', '12', '优惠券列表', '1', '0', 'coupon', 'sms-coupon', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_menu` VALUES ('16', '12', '品牌推荐', '1', '0', 'homeBrand', 'product-brand', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_menu` VALUES ('17', '12', '新品推荐', '1', '0', 'homeNew', 'sms-new', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_menu` VALUES ('18', '12', '人气推荐', '1', '0', 'homeHot', 'sms-hot', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_menu` VALUES ('19', '12', '专题推荐', '1', '0', 'homeSubject', 'sms-subject', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_menu` VALUES ('20', '12', '广告列表', '1', '0', 'homeAdvertise', 'sms-ad', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_menu` VALUES ('21', '0', '权限', '0', '0', 'ums', 'ums', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_menu` VALUES ('22', '21', '用户列表', '1', '0', 'admin', 'ums-admin', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_menu` VALUES ('23', '21', '角色列表', '1', '0', 'role', 'ums-role', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_menu` VALUES ('24', '21', '菜单列表', '1', '0', 'menu', 'ums-menu', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_menu` VALUES ('25', '21', '资源列表', '1', '0', 'resource', 'ums-resource', '0','2020-02-02 14:50:36','2020-02-02 14:50:36');
 
 
-DROP TABLE IF EXISTS `ums_role_menu_relation`;
-CREATE TABLE `ums_role_menu_relation` (
+DROP TABLE IF EXISTS `sys_role_menu`;
+CREATE TABLE `sys_role_menu` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `role_id` bigint(20) NOT NULL COMMENT '角色ID',
   `menu_id` bigint(20) NOT NULL COMMENT '菜单ID',
@@ -156,41 +156,41 @@ CREATE TABLE `ums_role_menu_relation` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB COMMENT='后台角色菜单关系表';
 
-INSERT INTO `ums_role_menu_relation` VALUES ('33', '1', '1','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('34', '1', '2','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('35', '1', '3','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('36', '1', '4','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('37', '1', '5','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('38', '1', '6','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('53', '2', '7','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('54', '2', '8','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('55', '2', '9','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('56', '2', '10','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('57', '2', '11','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('72', '5', '1','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('73', '5', '2','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('74', '5', '3','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('75', '5', '4','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('76', '5', '5','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('77', '5', '6','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('78', '5', '7','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('79', '5', '8','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('80', '5', '9','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('81', '5', '10','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('82', '5', '11','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('83', '5', '12','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('84', '5', '13','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('85', '5', '14','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('86', '5', '16','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('87', '5', '17','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('88', '5', '18','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('89', '5', '19','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('90', '5', '20','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('91', '5', '21','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('92', '5', '22','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('93', '5', '23','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('94', '5', '24','2020-02-02 14:50:36','2020-02-02 14:50:36');
-INSERT INTO `ums_role_menu_relation` VALUES ('95', '5', '25','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('33', '1', '1','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('34', '1', '2','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('35', '1', '3','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('36', '1', '4','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('37', '1', '5','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('38', '1', '6','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('53', '2', '7','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('54', '2', '8','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('55', '2', '9','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('56', '2', '10','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('57', '2', '11','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('72', '5', '1','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('73', '5', '2','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('74', '5', '3','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('75', '5', '4','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('76', '5', '5','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('77', '5', '6','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('78', '5', '7','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('79', '5', '8','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('80', '5', '9','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('81', '5', '10','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('82', '5', '11','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('83', '5', '12','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('84', '5', '13','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('85', '5', '14','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('86', '5', '16','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('87', '5', '17','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('88', '5', '18','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('89', '5', '19','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('90', '5', '20','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('91', '5', '21','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('92', '5', '22','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('93', '5', '23','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('94', '5', '24','2020-02-02 14:50:36','2020-02-02 14:50:36');
+INSERT INTO `sys_role_menu` VALUES ('95', '5', '25','2020-02-02 14:50:36','2020-02-02 14:50:36');
 
 
 DROP TABLE IF EXISTS `ums_user_permission_relation`;
