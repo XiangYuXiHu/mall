@@ -52,9 +52,9 @@ CREATE TABLE `sys_role` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB COMMENT='后台用户角色表';
 
-INSERT INTO `ums_role` VALUES ('1', '商品管理员', '1','0', '0','只能查看及操作商品','2020-02-03 16:50:37','2020-02-03 16:50:37');
-INSERT INTO `ums_role` VALUES ('2', '订单管理员', '1','0', '0','只能查看及操作订单','2020-02-03 16:50:37','2020-02-03 16:50:37');
-INSERT INTO `ums_role` VALUES ('5', '超级管理员', '1','0', '0','拥有所有查看和操作功能','2020-02-03 16:50:37','2020-02-03 16:50:37');
+INSERT INTO `sys_role` VALUES ('1', '商品管理员', '1','0', '0','只能查看及操作商品','2020-02-03 16:50:37','2020-02-03 16:50:37');
+INSERT INTO `sys_role` VALUES ('2', '订单管理员', '1','0', '0','只能查看及操作订单','2020-02-03 16:50:37','2020-02-03 16:50:37');
+INSERT INTO `sys_role` VALUES ('5', '超级管理员', '1','0', '0','拥有所有查看和操作功能','2020-02-03 16:50:37','2020-02-03 16:50:37');
 
 
 DROP TABLE IF EXISTS `ums_permission`;
@@ -258,47 +258,47 @@ CREATE TABLE `sys_role_resource` (
 ) ENGINE=InnoDB COMMENT='后台角色资源关系表';
 
 
-INSERT INTO `ums_role_resource_relation` VALUES ('103', '2', '8', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('104', '2', '9', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('105', '2', '10', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('106', '2', '11', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('107', '2', '12', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('142', '5', '1', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('143', '5', '2', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('144', '5', '3', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('145', '5', '4', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('146', '5', '5', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('147', '5', '6', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('148', '5', '8', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('149', '5', '9', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('150', '5', '10', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('151', '5', '11', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('152', '5', '12', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('153', '5', '13', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('154', '5', '14', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('155', '5', '15', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('156', '5', '16', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('157', '5', '17', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('158', '5', '18', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('159', '5', '19', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('160', '5', '20', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('161', '5', '21', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('162', '5', '22', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('163', '5', '23', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('164', '5', '24', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('165', '5', '25', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('166', '5', '26', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('167', '5', '27', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('168', '5', '28', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('169', '5', '29', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('170', '1', '1', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('171', '1', '2', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('172', '1', '3', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('173', '1', '4', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('174', '1', '5', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('175', '1', '6', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('176', '1', '23', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
-INSERT INTO `ums_role_resource_relation` VALUES ('177', '1', '24', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('103', '2', '8', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('104', '2', '9', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('105', '2', '10', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('106', '2', '11', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('107', '2', '12', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('142', '5', '1', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('143', '5', '2', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('144', '5', '3', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('145', '5', '4', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('146', '5', '5', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('147', '5', '6', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('148', '5', '8', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('149', '5', '9', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('150', '5', '10', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('151', '5', '11', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('152', '5', '12', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('153', '5', '13', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('154', '5', '14', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('155', '5', '15', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('156', '5', '16', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('157', '5', '17', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('158', '5', '18', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('159', '5', '19', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('160', '5', '20', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('161', '5', '21', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('162', '5', '22', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('163', '5', '23', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('164', '5', '24', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('165', '5', '25', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('166', '5', '26', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('167', '5', '27', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('168', '5', '28', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('169', '5', '29', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('170', '1', '1', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('171', '1', '2', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('172', '1', '3', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('173', '1', '4', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('174', '1', '5', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('175', '1', '6', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('176', '1', '23', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
+INSERT INTO `sys_role_resource` VALUES ('177', '1', '24', '2020-02-04 17:04:55', '2020-02-04 17:04:55');
 
 
 

@@ -3,6 +3,7 @@ package com.smile.admin.dto.domain;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,12 +12,14 @@ import java.util.List;
  * @Author smile
  * @date 2022.08.28 16:45
  */
-@Getter
-@Setter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDto implements Serializable {
+
+    /**
+     * 主键
+     */
+    private Long id;
 
     /**
      * 用户名
@@ -29,14 +32,37 @@ public class UserDto implements Serializable {
     private String icon;
 
     /**
-     * 菜单列表
+     * 邮箱
      */
-    private List<MenuDto> menuDtoList;
+    private String email;
 
     /**
-     * 菜单名称
+     * 昵称
      */
-    private List<String> roleNameList;
+    private String nickName;
+
+    /**
+     * 帐号启用状态：0->禁用；1->启用
+     */
+    private Boolean status;
+
+    /**
+     * 备注信息
+     */
+    private String note;
+
+    /**
+     * 创建时间
+     */
+    private Date createTime;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -54,19 +80,57 @@ public class UserDto implements Serializable {
         this.icon = icon;
     }
 
-    public List<MenuDto> getMenuDtoList() {
-        return menuDtoList;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMenuDtoList(List<MenuDto> menuDtoList) {
-        this.menuDtoList = menuDtoList;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public List<String> getRoleNameList() {
-        return roleNameList;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setRoleNameList(List<String> roleNameList) {
-        this.roleNameList = roleNameList;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", icon='" + icon + '\'' +
+                ", email='" + email + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", status=" + status +
+                ", note='" + note + '\'' +
+                ", createTime=" + createTime +
+                '}';
     }
 }

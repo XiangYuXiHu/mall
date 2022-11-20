@@ -1,6 +1,6 @@
 package com.smile.common.exception;
 
-import com.smile.common.domain.CommonResult;
+import com.smile.common.vo.BaseVo;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,8 +24,8 @@ public class GlobalExceptionHandler {
      * @return
      */
     @ExceptionHandler(value = ApiException.class)
-    public CommonResult handle(ApiException e) {
-        return CommonResult.failed(e);
+    public BaseVo handle(ApiException e) {
+        return BaseVo.failed(e);
     }
 
 

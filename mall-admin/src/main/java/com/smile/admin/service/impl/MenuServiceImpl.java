@@ -44,7 +44,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
                 List<Long> menuIds = roleMenus.stream().map(RoleMenu::getMenuId).collect(Collectors.toList());
                 List<Menu> menus = listByIds(menuIds);
                 return menus.stream().map(menu -> {
-                    MenuDto menuDto = MenuDto.builder().title(menu.getTitle())
+                    MenuDto menuDto = MenuDto.builder().id(menu.getId()).title(menu.getTitle())
                             .name(menu.getName()).sort(menu.getSort())
                             .parentId(menu.getParentId()).hidden(menu.getHidden())
                             .level(menu.getLevel()).icon(menu.getIcon()).build();

@@ -3,8 +3,10 @@ package com.smile.dao.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -17,108 +19,108 @@ import java.io.Serializable;
 @TableName("sys_resource")
 public class Resource implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
-      @TableId(value = "id", type = IdType.AUTO)
-      private Long id;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
 
-      /**
+    /**
      * 资源名称
      */
-      private String name;
+    private String name;
 
-      /**
+    /**
      * 资源URL
      */
-      private String url;
+    private String url;
 
-      /**
+    /**
      * 描述
      */
-      private String description;
+    private String description;
 
-      /**
+    /**
      * 资源分类ID
      */
-      private Long categoryId;
+    private Long categoryId;
 
-      /**
+    /**
      * 创建时间
      */
-      private LocalDateTime createTime;
+    private Date createTime;
 
-      /**
+    /**
      * 更新时间
      */
-      private LocalDateTime updateTime;
+    private Date updateTime;
 
-    
+
     public Long getId() {
         return id;
     }
 
-      public void setId(Long id) {
-          this.id = id;
-      }
-    
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
 
-      public void setName(String name) {
-          this.name = name;
-      }
-    
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getUrl() {
         return url;
     }
 
-      public void setUrl(String url) {
-          this.url = url;
-      }
-    
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     public String getDescription() {
         return description;
     }
 
-      public void setDescription(String description) {
-          this.description = description;
-      }
-    
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public Long getCategoryId() {
         return categoryId;
     }
 
-      public void setCategoryId(Long categoryId) {
-          this.categoryId = categoryId;
-      }
-    
-    public LocalDateTime getCreateTime() {
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public Date getCreateTime() {
         return createTime;
     }
 
-      public void setCreateTime(LocalDateTime createTime) {
-          this.createTime = createTime;
-      }
-    
-    public LocalDateTime getUpdateTime() {
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-      public void setUpdateTime(LocalDateTime updateTime) {
-          this.updateTime = updateTime;
-      }
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 
     @Override
     public String toString() {
         return "Resource{" +
-              "id=" + id +
-                  ", name=" + name +
-                  ", url=" + url +
-                  ", description=" + description +
-                  ", categoryId=" + categoryId +
-                  ", createTime=" + createTime +
-                  ", updateTime=" + updateTime +
-              "}";
+                "id=" + id +
+                ", name=" + name +
+                ", url=" + url +
+                ", description=" + description +
+                ", categoryId=" + categoryId +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                "}";
     }
 }

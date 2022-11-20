@@ -1,9 +1,12 @@
 package com.smile.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.smile.admin.dto.domain.UserDto;
 import com.smile.admin.dto.request.UserRegisterRequest;
 import com.smile.dao.entity.User;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.List;
 
 /**
  * <p>
@@ -29,7 +32,7 @@ public interface UserService extends IService<User> {
      * @param userRegisterRequest
      * @return
      */
-    void register(UserRegisterRequest userRegisterRequest);
+    boolean register(UserRegisterRequest userRegisterRequest);
 
     /**
      * 获取用户信息
@@ -55,5 +58,15 @@ public interface UserService extends IService<User> {
      * @return
      */
     String refreshToken(String token);
+
+    /***
+     * 分页查询
+     * @param username
+     * @param nickName
+     * @param pageSize
+     * @param pageNum
+     * @return
+     */
+    List<UserDto> userPage(String username, String nickName, Integer pageSize, Integer pageNum);
 
 }

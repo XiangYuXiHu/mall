@@ -17,6 +17,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class MenuDto implements Serializable {
 
+    private Long id;
+
     /**
      * 父级ID
      */

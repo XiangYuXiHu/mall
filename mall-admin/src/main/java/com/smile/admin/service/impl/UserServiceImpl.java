@@ -2,7 +2,10 @@ package com.smile.admin.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.github.pagehelper.PageHelper;
+import com.google.common.collect.Lists;
 import com.smile.admin.bo.MyUserDetails;
+import com.smile.admin.dto.domain.UserDto;
 import com.smile.admin.dto.request.UserRegisterRequest;
 import com.smile.admin.service.ResourceService;
 import com.smile.admin.service.UserLoginLogService;
@@ -14,6 +17,8 @@ import com.smile.dao.entity.User;
 import com.smile.dao.mapper.UserMapper;
 import com.smile.security.util.JwtTokenUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,6 +29,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.smile.common.enums.ResultCode.*;
 
@@ -61,7 +67,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public void register(UserRegisterRequest userRegisterRequest) {
+    public boolean register(UserRegisterRequest userRegisterRequest) {
         User user = new User();
         BeanUtils.copyProperties(userRegisterRequest, user);
         user.setCreateTime(new Date());
@@ -72,7 +78,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
         String encodePassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodePassword);
-        save(user);
+        return save(user);
     }
 
     @Override
@@ -100,11 +106,36 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             List<Resource> resourceList = resourceService.getResourceList(user.getId());
             return new MyUserDetails(user, resourceList);
         }
-        throw new ApiException("用户名或密码错误");
+        throw new ApiException(USERNAME_NOT_EXIST);
     }
 
     @Override
     public String refreshToken(String token) {
         return jwtTokenUtil.refreshHeadToken(token);
     }
+
+    @Override
+    public List<UserDto> userPage(String username, String nickName, Integer pageSize, Integer pageNum) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        if (StringUtils.isNoneBlank(username)) {
+            queryWrapper.like("username", username);
+        }
+        if (StringUtils.isNoneBlank(nickName)) {
+            queryWrapper.like("nick_name", nickName);
+        }
+        PageHelper.startPage(pageNum, pageSize);
+        List<User> userList = list(queryWrapper);
+        if (CollectionUtils.isNotEmpty(userList)) {
+            List<UserDto> userDtoList = userList.stream().map(user -> {
+                UserDto userDto = new UserDto();
+                BeanUtils.copyProperties(user, userDto);
+                return userDto;
+            }).collect(Collectors.toList());
+            return userDtoList;
+        } else {
+            return Lists.newArrayList();
+        }
+    }
+
+
 }

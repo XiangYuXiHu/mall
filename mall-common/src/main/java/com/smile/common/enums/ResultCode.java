@@ -16,7 +16,7 @@ public enum ResultCode {
      * 管理后台
      */
     REGISTRY_ALREADY(10001, "用户名已注册"),
-    REGISTRY_SUCCESS(10002, "注册成功"),
+    USERNAME_NOT_EXIST(10002, "用户名不存在"),
 
     USER_PASSWORD_ERROR(10003, "用户名或密码错误"),
     PASSWORD_ERROR(10003, "密码不正确"),

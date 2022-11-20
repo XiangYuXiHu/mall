@@ -7,16 +7,13 @@ import com.smile.admin.dto.request.UserLoginRequest;
 import com.smile.admin.dto.request.UserRegisterRequest;
 import com.smile.admin.service.MenuService;
 import com.smile.admin.service.RoleService;
-import com.smile.admin.service.UserRoleService;
 import com.smile.admin.service.UserService;
-import com.smile.common.domain.CommonResult;
-import com.smile.common.exception.ApiException;
 import com.smile.common.exception.Asserts;
-import com.smile.dao.entity.Menu;
+import com.smile.common.vo.BaseVo;
+import com.smile.common.vo.PageVo;
 import com.smile.dao.entity.Role;
 import com.smile.dao.entity.User;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +28,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.smile.common.enums.ResultCode.*;
+import static com.smile.common.enums.ResultCode.TOKEN_EXPIRED;
+import static com.smile.common.enums.ResultCode.UNAUTHORIZED;
 
 /**
  * <p>
@@ -44,7 +42,7 @@ import static com.smile.common.enums.ResultCode.*;
 @Slf4j
 @RestController
 @Api(tags = "UserController", value = "后台用户管理")
-@RequestMapping("/user")
+@RequestMapping("/admin")
 public class UserController {
 
     @Value("${jwt.tokenHeader}")
@@ -68,12 +66,11 @@ public class UserController {
      * @param userRegisterRequest
      * @return
      */
-    @ApiOperation(value = "用户注册")
     @PostMapping("register")
-    public CommonResult register(@Validated @RequestBody UserRegisterRequest userRegisterRequest) {
+    public BaseVo register(@Validated @RequestBody UserRegisterRequest userRegisterRequest) {
         log.info("注册请求参数为:{}", userRegisterRequest);
-        userService.register(userRegisterRequest);
-        return CommonResult.success(REGISTRY_SUCCESS.getMessage());
+        boolean isRegister = userService.register(userRegisterRequest);
+        return BaseVo.success(isRegister);
     }
 
     /**
@@ -82,16 +79,15 @@ public class UserController {
      * @param request
      * @return
      */
-    @ApiOperation(value = "登陆返回token")
     @PostMapping("login")
-    public CommonResult<Map<String, String>> login(@Validated @RequestBody UserLoginRequest request) {
+    public BaseVo<Map<String, String>> login(@Validated @RequestBody UserLoginRequest request) {
         log.info("用户登录请求参数为:{}", request);
         String token = userService.login(request.getUsername(), request.getPassword());
 
         Map<String, String> tokenMap = new HashMap<>();
         tokenMap.put("token", token);
         tokenMap.put("tokenHead", tokenHead);
-        return CommonResult.success(tokenMap);
+        return BaseVo.success(tokenMap);
     }
 
     /**
@@ -100,10 +96,9 @@ public class UserController {
      * @param request
      * @return
      */
-    @ApiOperation(value = "刷新token")
     @GetMapping("refreshToken")
-    public CommonResult<Map<String, String>> refreshToken(HttpServletRequest request) {
-        String token = request.getHeader(tokenHead);
+    public BaseVo<Map<String, String>> refreshToken(HttpServletRequest request) {
+        String token = request.getHeader(tokenHeader);
         String refreshToken = userService.refreshToken(token);
         if (StringUtils.isBlank(refreshToken)) {
             Asserts.fail(TOKEN_EXPIRED);
@@ -111,7 +106,7 @@ public class UserController {
         Map<String, String> tokenMap = new HashMap<>();
         tokenMap.put("token", refreshToken);
         tokenMap.put("tokenHead", tokenHead);
-        return CommonResult.success(tokenMap);
+        return BaseVo.success(tokenMap);
     }
 
     /**
@@ -119,36 +114,55 @@ public class UserController {
      *
      * @return
      */
-    @ApiOperation(value = "获取当前登录用户信息")
     @GetMapping("info")
-    public CommonResult getUserInfo(Principal principal) {
+    public BaseVo getUserInfo(Principal principal) {
         if (null == principal) {
             Asserts.fail(UNAUTHORIZED);
         }
         String username = principal.getName();
         User user = userService.getUserByUsername(username);
-        Long userId = user.getId();
-        List<MenuDto> menuList = menuService.getMenuByUserId(userId);
-        List<Role> roleList = roleService.getRoleList(userId);
-        List<String> roleNames = roleList.stream().map(Role::getRoleName)
-                .collect(Collectors.toList());
 
-        UserDto userDto = UserDto.builder()
-                .username(user.getUsername())
-                .icon(user.getIcon())
-                .menuDtoList(menuList)
-                .roleNameList(roleNames)
-                .build();
-
-        return CommonResult.success(userDto);
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("username", user.getUsername());
+        data.put("icon", user.getIcon());
+        List<MenuDto> menuList = menuService.getMenuByUserId(user.getId());
+        data.put("menus", menuList);
+        List<Role> roleList = roleService.getRoleList(user.getId());
+        List<String> roleNames = roleList.stream().map(Role::getRoleName).collect(Collectors.toList());
+        data.put("roles", roleNames);
+        return BaseVo.success(data);
     }
 
-    //todo
 
-    @ApiOperation(value = "登出功能")
+    /**
+     * 登出功能
+     *
+     * @return
+     */
     @PostMapping(value = "/logout")
-    public CommonResult logout() {
-        return CommonResult.success(null);
+    public BaseVo logout() {
+        return BaseVo.success(null);
     }
+
+
+    /**
+     * 根据用户名或者姓名分页查询
+     *
+     * @param username
+     * @param nickName
+     * @param pageSize
+     * @param pageNum
+     * @return
+     */
+    @GetMapping("list")
+    public BaseVo getUserPage(@RequestParam("username") String username,
+                              @RequestParam("nickName") String nickName,
+                              @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
+                              @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
+        List<UserDto> userDtos = userService.userPage(username, nickName, pageSize, pageNum);
+        return BaseVo.success(PageVo.pageInfo(userDtos));
+    }
+
+    
 }
 

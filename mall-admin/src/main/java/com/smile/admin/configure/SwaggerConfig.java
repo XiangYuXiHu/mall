@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @date 2022.07.03 15:21
  */
 @Configuration
-@EnableOpenApi  //启动swagger使用
+@EnableOpenApi
 public class SwaggerConfig extends BaseSwaggerConfig {
 
     @Bean

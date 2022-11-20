@@ -3,8 +3,10 @@ package com.smile.dao.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -17,80 +19,80 @@ import java.io.Serializable;
 @TableName("sys_user_role")
 public class UserRole implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
-      @TableId(value = "id", type = IdType.AUTO)
-      private Long id;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
 
-      /**
+    /**
      * 用户主键
      */
-      private Long userId;
+    private Long userId;
 
-      /**
+    /**
      * 角色主键
      */
-      private Long roleId;
+    private Long roleId;
 
-      /**
+    /**
      * 创建时间
      */
-      private LocalDateTime createTime;
+    private Date createTime;
 
-      /**
+    /**
      * 更新时间
      */
-      private LocalDateTime updateTime;
+    private Date updateTime;
 
-    
+
     public Long getId() {
         return id;
     }
 
-      public void setId(Long id) {
-          this.id = id;
-      }
-    
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Long getUserId() {
         return userId;
     }
 
-      public void setUserId(Long userId) {
-          this.userId = userId;
-      }
-    
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
     public Long getRoleId() {
         return roleId;
     }
 
-      public void setRoleId(Long roleId) {
-          this.roleId = roleId;
-      }
-    
-    public LocalDateTime getCreateTime() {
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
+    }
+
+    public Date getCreateTime() {
         return createTime;
     }
 
-      public void setCreateTime(LocalDateTime createTime) {
-          this.createTime = createTime;
-      }
-    
-    public LocalDateTime getUpdateTime() {
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-      public void setUpdateTime(LocalDateTime updateTime) {
-          this.updateTime = updateTime;
-      }
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 
     @Override
     public String toString() {
         return "UserRole{" +
-              "id=" + id +
-                  ", userId=" + userId +
-                  ", roleId=" + roleId +
-                  ", createTime=" + createTime +
-                  ", updateTime=" + updateTime +
-              "}";
+                "id=" + id +
+                ", userId=" + userId +
+                ", roleId=" + roleId +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                "}";
     }
 }

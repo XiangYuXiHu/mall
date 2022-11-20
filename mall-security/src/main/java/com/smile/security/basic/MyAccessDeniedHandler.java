@@ -1,7 +1,7 @@
 package com.smile.security.basic;
 
 import com.alibaba.fastjson.JSONObject;
-import com.smile.common.domain.CommonResult;
+import com.smile.common.vo.BaseVo;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
@@ -29,7 +29,7 @@ public class MyAccessDeniedHandler implements AccessDeniedHandler {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         PrintWriter writer = response.getWriter();
-        writer.println(JSONObject.toJSONString(CommonResult.failed(e.getMessage())));
+        writer.println(JSONObject.toJSONString(BaseVo.failed(e.getMessage())));
         writer.flush();
     }
 }
